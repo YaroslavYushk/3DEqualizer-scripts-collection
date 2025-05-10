@@ -1,7 +1,7 @@
 #
-# 3DE4.script.name:	Create human
-# 3DE4.script.version:  v1.1
-# 3DE4.script.comment:  Creates human 3d model in scene for scale reference
+# 3DE4.script.name: Create human
+# 3DE4.script.version: v1.1
+# 3DE4.script.comment: Creates human 3d model in scene for scale reference
 #
 # 3DE4.script.gui: Orientation Controls::3D Models::Create
 # 3DE4.script.gui: Object Browser::Context Menu 3D Models::Add New
