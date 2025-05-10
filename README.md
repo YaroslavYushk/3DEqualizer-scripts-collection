@@ -15,6 +15,6 @@ This script allows you to scale all your scene based on the size of your referen
 5. (Optional) Select the coordinates of the pivot point
 6. Press the "Rescale Scene" button
 
-![gif](https://github.com/YaroslavYushk/3DEqualizer-scripts-collection/blob/rescale_scene/Media/Rescale_scene.gif)
+![gif](https://github.com/YaroslavYushk/3DEqualizer-scripts-collection/blob/main/Media/Rescale_scene.gif)
 
-[link](https://github.com/YaroslavYushk/3DEqualizer-scripts-collection/blob/rescale_scene/Scripts/Recale_scene_v1.3.1.py)
+[link](https://github.com/YaroslavYushk/3DEqualizer-scripts-collection/blob/main/Scripts/Recale_scene_v1.3.1.py)
