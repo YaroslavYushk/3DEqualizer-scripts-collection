@@ -18,3 +18,9 @@ This script allows you to scale all your scene based on the size of your referen
 ![gif](https://github.com/YaroslavYushk/3DEqualizer-scripts-collection/blob/main/Media/Rescale_scene.gif)
 
 [link](https://github.com/YaroslavYushk/3DEqualizer-scripts-collection/blob/main/Scripts/Recale_scene.py)
+
+## Point Position Copy-Paste
+
+As simple as it is. Allows you to copy and paste 3d position of a survey point
+
+[link](https://github.com/YaroslavYushk/3DEqualizer-scripts-collection/blob/main/Scripts/Point_Position_Copy-Paste.py)
