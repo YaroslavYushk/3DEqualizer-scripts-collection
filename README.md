@@ -19,6 +19,12 @@ This script allows you to scale all your scene based on the size of your referen
 
 [link](https://github.com/YaroslavYushk/3DEqualizer-scripts-collection/blob/main/Scripts/Recale_scene.py)
 
+## Create human
+
+Creates 3d model of human, 180cm height. Very handy for scale reference of your scene and works great with Rescale Scene script
+
+[link](https://github.com/YaroslavYushk/3DEqualizer-scripts-collection/blob/main/Scripts/Create_human.py)
+
 ## Point Position Copy-Paste
 
 As simple as it is. Allows you to copy and paste 3d position of a survey point
