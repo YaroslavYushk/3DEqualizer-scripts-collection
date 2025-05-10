@@ -5,6 +5,7 @@
 # 3DE4.script.gui:	Object Browser::Scripts
 #
 # Author - Yaroslav Yushkevich
+# Bugs, ideas, feedback - https://github.com/YaroslavYushk/
 #
 
 
