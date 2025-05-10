@@ -17,4 +17,4 @@ This script allows you to scale all your scene based on the size of your referen
 
 ![gif](https://github.com/YaroslavYushk/3DEqualizer-scripts-collection/blob/main/Media/Rescale_scene.gif)
 
-[link](https://github.com/YaroslavYushk/3DEqualizer-scripts-collection/blob/main/Scripts/Recale_scene_v1.3.1.py)
+[link](https://github.com/YaroslavYushk/3DEqualizer-scripts-collection/blob/main/Scripts/Recale_scene.py)
