@@ -35,4 +35,6 @@ As simple as it is. Allows you to copy and paste 3d position of a survey point
 
 Calculates minimal overscan for ScanlineRender node in Nuke. Uses "calc_overscan_distortion_bbox" script from 3DE (which you have by default) but shows convenient values
 
+![img](https://github.com/YaroslavYushk/3DEqualizer-scripts-collection/blob/main/Media/Calc_overscan.png)
+
 [link](https://github.com/YaroslavYushk/3DEqualizer-scripts-collection/blob/main/Scripts/Calc_overscan_for_Nuke.py)
