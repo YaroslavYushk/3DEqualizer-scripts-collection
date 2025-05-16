@@ -30,3 +30,9 @@ Creates 3d model of human, 180cm height. Very handy for scale reference of your 
 As simple as it is. Allows you to copy and paste 3d position of a survey point
 
 [link](https://github.com/YaroslavYushk/3DEqualizer-scripts-collection/blob/main/Scripts/Point_Position_Copy-Paste.py)
+
+## Calc overscan for Nuke
+
+Calculates minimal overscan for ScanlineRender node in Nuke. Uses "calc_overscan_distortion_bbox" script from 3DE (which you have by default) but shows convenient values
+
+[link](https://github.com/YaroslavYushk/3DEqualizer-scripts-collection/blob/main/Scripts/Calc_overscan_for_Nuke.py)
