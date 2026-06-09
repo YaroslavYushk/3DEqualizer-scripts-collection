@@ -1,6 +1,6 @@
 #
 # 3DE4.script.name: Rescale 3d scene
-# 3DE4.script.version:	v1.3.1
+# 3DE4.script.version:	v1.3.2
 # 3DE4.script.comment:	Scales the whole scene based on your reference model
 #
 # 3DE4.script.gui:	Orientation Controls::Scripts
@@ -13,7 +13,6 @@
 
 
 import tde4
-from vl_sdv import *
 from vl_sdv import mat3d, vec3d, rot3d, VL_APPLY_ZXY
 
 
@@ -43,7 +42,6 @@ def set_model_scale(models, scale):
     pg = tde4.getCurrentPGroup()
     if models:
         for model in models:
-            scale_matrix = get_model_rotation_scale(model)[1]
             rotation_matrix = get_model_rotation_scale(model)[0]
             scale_matrix = mat3d(
                 float(scale), 0.0, 0.0,
@@ -53,7 +51,7 @@ def set_model_scale(models, scale):
             tde4.set3DModelRotationScale3D(pg, model, final_matrix.list())
 
 
-def upscale_model(models, upscale):
+def upscale_models(models, upscale):
     pg = tde4.getCurrentPGroup()
     if models:
         for model in models:
@@ -67,7 +65,7 @@ def upscale_model(models, upscale):
             tde4.set3DModelRotationScale3D(pg, model, final_matrix.list())
 
 
-def reposition_model(models, pivot, upscale):
+def reposition_models(models, pivot, upscale):
     pg = tde4.getCurrentPGroup()
     cam = tde4.getCurrentCamera()
     frame = tde4.getCurrentFrame(cam)
@@ -106,21 +104,21 @@ def scale_points(pivot_coord, upscale):
 
 def scale_camera_path(pivot_coord, upscale):
     pg = tde4.getCurrentPGroup()
-    cam = tde4.getCurrentCamera()
-    for i_frame in range(tde4.getCameraNoFrames(cam)):
-        frame = i_frame + 1
-        print('entering %s frame' % frame)
-        # Bake rotation from filtered curve to keyframes
-        tde4.setPGroupRotation3D(
-            pg, cam, frame, tde4.getPGroupRotation3D(pg, cam, frame))
-        # Change camera position
-        pos_vec_scaled = []
-        pos_vec = tde4.getPGroupPosition3D(pg, cam, frame)
-        for pv, pc in zip(pos_vec, pivot_coord):
-            pos_vec_scaled.append((pv - pc) * upscale + pc)
-        tde4.setPGroupPosition3D(pg, cam, frame, pos_vec_scaled)
-    # Bake pos and rot curves to filtered curve
-    tde4.copyPGroupEditCurvesToFilteredCurves(pg, cam)
+    cam_list = tde4.getCameraList()
+    for cam in cam_list:
+        for i_frame in range(tde4.getCameraNoFrames(cam)):
+            frame = i_frame + 1
+            # Bake rotation from filtered curve to keyframes
+            tde4.setPGroupRotation3D(
+                pg, cam, frame, tde4.getPGroupRotation3D(pg, cam, frame))
+            # Change camera position
+            pos_vec_scaled = []
+            pos_vec = tde4.getPGroupPosition3D(pg, cam, frame)
+            for pv, pc in zip(pos_vec, pivot_coord):
+                pos_vec_scaled.append((pv - pc) * upscale + pc)
+            tde4.setPGroupPosition3D(pg, cam, frame, pos_vec_scaled)
+        # Bake pos and rot curves to filtered curve
+        tde4.copyPGroupEditCurvesToFilteredCurves(pg, cam)
 
 
 def rsclr_get_ref_model(requester, widget, action):
@@ -256,41 +254,53 @@ def rsclr_choose_pivot(requester, widget, action):
 def rsclr_rescale_scene(requester, widget, action):
     global UPSCALE
     global PIVOT_COORD
-    cam = tde4.getCurrentCamera()
-    pg = tde4.getCurrentPGroup()
+    cam_list = tde4.getCameraList()
+    pg_list = tde4.getPGroupList()
 
-    if (cam is None) or (pg is None):
+    if (len(cam_list) == 0) or (len(pg_list) == 0):
         tde4.postQuestionRequester(
             "Rescale scene", "There is no current Point Group or Camera.", "Ok")
         return
-    if tde4.getCameraPath(cam) == '':
-        tde4.postQuestionRequester(
-            "Rescale scene", "You need to load footage in camera", "Ok")
-        return
 
-    if tde4.getNoPGroups() > 1:
+    for cam in cam_list:
+        if tde4.getCameraPath(cam) == '':
+            tde4.postQuestionRequester(
+                "Rescale scene", "You need to load footage in all existing cameras", "Ok")
+            return
+
+    if len(pg_list) > 1:
         button = tde4.postQuestionRequester(
             "Rescale scene",
             "This script is not intended for use when object"
             "tracking is done. Use it on your own risk",
             "Continue", "Cancel")
-        if button == 2: return
+        if button == 2: return  # User pressed "Cancel"
 
-    if tde4.getCameraPosConstraintForceY(cam)[0] == 1:
-        cam_pos_Y = tde4.getCameraPosConstraintForceY(cam)[1]
-        tde4.setCameraPosConstraintForceY(
-            cam, 1, (cam_pos_Y - PIVOT_COORD[1]) * UPSCALE + PIVOT_COORD[1])
-    models_list = tde4.get3DModelList(pg)
-    if tde4.getPGroupType(pg) == "CAMERA":
-        reposition_model(models_list, PIVOT_COORD, UPSCALE)
-        upscale_model(models_list, UPSCALE)
-        scale_points(PIVOT_COORD, UPSCALE)
-        scale_camera_path(PIVOT_COORD, UPSCALE)
-        tde4.setWidgetValue(requester, "Ref_model_scale", "1.0")
-        tde4.updateGUI()
+    for cam in cam_list:
+        if tde4.getCameraPosConstraintForceY(cam)[0] == 1:
+            cam_pos_Y = tde4.getCameraPosConstraintForceY(cam)[1]
+            tde4.setCameraPosConstraintForceY(
+                cam, 1, (cam_pos_Y - PIVOT_COORD[1]) * UPSCALE + PIVOT_COORD[1])
+
+    # First we update cameras, then the object track, to avoid mistakes
+    for pg in pg_list:
+        if tde4.getPGroupType(pg) == "CAMERA":
+            models_list = tde4.get3DModelList(pg)
+            reposition_models(models_list, PIVOT_COORD, UPSCALE)
+            upscale_models(models_list, UPSCALE)
+            scale_points(PIVOT_COORD, UPSCALE)
+            scale_camera_path(PIVOT_COORD, UPSCALE)
+
+    for pg in pg_list:      
+        if tde4.getPGroupType(pg) == "OBJECT":
+            tde4.setPGroupScale3D(pg, tde4.getPGroupScale3D(pg))  # Just to update the scene
+
+    tde4.setWidgetValue(requester, "Ref_model_scale", "1.0")
+    tde4.updateGUI()
+    return
 
 
-def _YY_Rescale_sceneUpdate(requester):
+def _rsclr_scene_update(requester):
     return
 
 
@@ -403,10 +413,10 @@ except (ValueError, NameError, TypeError):
 if tde4.isCustomRequesterPosted(_YY_Rescale_scene_requester) == "REQUESTER_UNPOSTED":
     if tde4.getCurrentScriptCallHint() == "CALL_GUI_CONFIG_MENU":
         tde4.postCustomRequesterAndContinue(
-            _YY_Rescale_scene_requester, "Rescale_scene", 0, 0, "_YY_Rescale_sceneUpdate")
+            _YY_Rescale_scene_requester, "Rescale_scene", 0, 0, "_rsclr_scene_update")
     else:
         tde4.postCustomRequesterAndContinue(
-            _YY_Rescale_scene_requester, "Rescale scene", 600, 260, "_YY_Rescale_sceneUpdate")
+            _YY_Rescale_scene_requester, "Rescale scene", 600, 260, "_rsclr_scene_update")
 else:
     tde4.postQuestionRequester(
         "Rescale scene",
