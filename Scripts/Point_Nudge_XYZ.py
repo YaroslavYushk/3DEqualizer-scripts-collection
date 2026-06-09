@@ -24,7 +24,7 @@ def get_step(value):
     elif units == '2':  # mm
         return (value / 10)
     else:
-        return (value * 2)  # I don't care about in, ft or yd
+        return (value)  # I don't care about in, ft or yd
 
 
 def move_selected_points(dx, dy, dz):
