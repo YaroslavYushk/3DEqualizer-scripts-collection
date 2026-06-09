@@ -37,6 +37,8 @@ Color presets can be easily edited or added with a few lines of code
 
 ![img](https://github.com/YaroslavYushk/3DEqualizer-scripts-collection/blob/main/Media/Recolor_3d_model_02.png)
 
+[link](https://github.com/YaroslavYushk/3DEqualizer-scripts-collection/blob/main/Scripts/Recolor_3d_model.py)
+
 ## Point Position Copy-Paste
 
 As simple as it is. Allows you to copy and paste 3d position of a survey point
