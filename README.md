@@ -31,6 +31,8 @@ Creates 3d model of human, 180cm height. Very handy for scale reference of your 
 
 As simple as it is. Allows you to copy and paste 3d position of a survey point
 
+![img](https://github.com/YaroslavYushk/3DEqualizer-scripts-collection/blob/main/Media/Point_Position_Copy-Paste.png)
+
 [link](https://github.com/YaroslavYushk/3DEqualizer-scripts-collection/blob/main/Scripts/Point_Position_Copy-Paste.py)
 
 ## Calc overscan for Nuke
