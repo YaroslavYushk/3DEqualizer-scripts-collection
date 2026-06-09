@@ -27,6 +27,16 @@ Creates 3d model of human, 180cm height. Very handy for scale reference of your 
 
 [link](https://github.com/YaroslavYushk/3DEqualizer-scripts-collection/blob/main/Scripts/Create_human.py)
 
+## Recolor 3d model
+
+Applies preset colors to selected 3D models, directly from the native 3DE Attribute Editor panel
+
+![img](https://github.com/YaroslavYushk/3DEqualizer-scripts-collection/blob/main/Media/Recolor_3d_model_01.png)
+
+Color presets can be easily edited or added with a few lines of code
+
+![img](https://github.com/YaroslavYushk/3DEqualizer-scripts-collection/blob/main/Media/Recolor_3d_model_02.png)
+
 ## Point Position Copy-Paste
 
 As simple as it is. Allows you to copy and paste 3d position of a survey point
