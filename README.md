@@ -39,6 +39,14 @@ Color presets can be easily edited or added with a few lines of code
 
 [link](https://github.com/YaroslavYushk/3DEqualizer-scripts-collection/blob/main/Scripts/Recolor_3d_model.py)
 
+## Point Nudge XYZ
+
+Nudges selected points along XYZ axes with configurable step, directly from the native 3DE Attribute Editor panel
+
+![img](https://github.com/YaroslavYushk/3DEqualizer-scripts-collection/blob/main/Media/Point_Nudge_XYZ.png)
+
+[link](https://github.com/YaroslavYushk/3DEqualizer-scripts-collection/blob/main/Scripts/Point_Nudge_XYZ.py)
+
 ## Point Position Copy-Paste
 
 As simple as it is. Allows you to copy and paste 3d position of a survey point
