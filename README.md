@@ -23,6 +23,8 @@ This script allows you to scale all your scene based on the size of your referen
 
 Creates 3d model of human, 180cm height. Very handy for scale reference of your scene and works great with Rescale Scene script
 
+![img](https://github.com/YaroslavYushk/3DEqualizer-scripts-collection/blob/main/Media/Create_human.png)
+
 [link](https://github.com/YaroslavYushk/3DEqualizer-scripts-collection/blob/main/Scripts/Create_human.py)
 
 ## Point Position Copy-Paste
