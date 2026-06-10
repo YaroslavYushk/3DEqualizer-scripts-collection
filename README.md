@@ -62,3 +62,10 @@ Calculates minimal overscan for ScanlineRender node in Nuke. Uses "calc_overscan
 ![img](https://github.com/YaroslavYushk/3DEqualizer-scripts-collection/blob/main/Media/Calc_overscan.png)
 
 [link](https://github.com/YaroslavYushk/3DEqualizer-scripts-collection/blob/main/Scripts/Calc_overscan_for_Nuke.py)
+
+## Autodisable spline tracking boxes
+
+Do you hate this annoying "Spline Tracking Boxes" checkbox? Me too!
+Now it'll be disabled for every new point
+
+[link](https://github.com/YaroslavYushk/3DEqualizer-scripts-collection/blob/main/Scripts/Autodisable_spline_tracking_boxes.py)
